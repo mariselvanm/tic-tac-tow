@@ -1,0 +1,24 @@
+.tic-tac-tow-intro-container {
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-58%);
+
+    h1{
+        text-align: center;
+        font-family: 'Lobster', cursive;
+    }
+
+    a{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        text-decoration: none;
+        color: #fff;
+        background: #000;
+        padding: 7px;
+        border-radius: 6px;
+        font-family: 'Lobster', cursive;
+    }
+}

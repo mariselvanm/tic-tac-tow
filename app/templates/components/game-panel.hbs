@@ -1,0 +1,52 @@
+<div class="game-panel-container">
+		{{#if (not enableReset)}}
+				<div class="game-launch-container">
+						<label>
+								Grid Size :
+								{{input name="title" class="text-input large" placeholder="Enter Grid Size" value=defaultGridSize}}
+						</label>
+						<button onclick={{action "createGrid"}} disabled={{isCreateGridDisabled}}>Create</button>
+				</div>
+		{{else}}
+				<div class="game-launch-container">
+						<button onclick={{action "resetGame"}} class="reset-game">Game Reset</button>
+				</div>
+		{{/if}}
+		{{#if (and enableReset startCreatingGrid)}}
+				<div class={{concat "tic-tac-toe-grid-container " (if (or isXWin isOWin (and (not isGameInProgress) isGameDraw)) "remove-pointer-events")}}>
+						<table>
+								<tbody>
+										{{#each-in gridTemplate as |row columArray|}}
+												<tr>
+														{{#each columArray as |gridFileValue column|}}
+																<td {{action "fileWithData" row column}} role="button">{{gridFileValue}}</td>
+														{{/each}}
+												</tr>
+										{{/each-in}}
+								</tbody>
+						</table>
+				</div>
+		{{/if}}
+</div>
+<div class={{if (or isXWin isOWin (and (not isGameInProgress) isGameDraw)) "pyro"}}>
+		<div class="before"></div>
+		<div class="after"></div>
+		{{#if enableReset}}
+				{{#if isXWin}}
+						<div class="result-show-container">
+								<span>X win the match</span>
+								<button onclick={{action "resetGame"}} class="reset-game">Return Game</button>
+						</div>
+				{{else if isOWin}}
+						<div class="result-show-container">
+								<span>O win the match</span>
+								<button onclick={{action "resetGame"}} class="reset-game">Return Game</button>
+						</div>
+				{{else if (and (not isGameInProgress) isGameDraw)}}
+						<div class="result-show-container">
+								<span>The game is draw.</span>
+								<button onclick={{action "resetGame"}} class="reset-game">Return Game</button>
+						</div>
+				{{/if}}
+		{{/if}}
+</div>
